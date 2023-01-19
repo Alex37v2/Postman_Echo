@@ -1,9 +1,13 @@
 package ru.netology.test;
 
+import io.restassured.response.Response;
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.oauth;
+import java.net.ResponseCache;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 public class testPostmanEcho {
     @Test
@@ -15,6 +19,6 @@ public class testPostmanEcho {
                 .post("/post")
                 .then()
                 .statusCode(200)
-                .body("some data");
+                .body("data", equalTo("some data"));
     }
 }
